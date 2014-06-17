@@ -168,6 +168,11 @@
                 }
                 options[attrKey] = attrVal;
               }
+              var customOptions = {};
+              // apply custom options if present
+              if(attr.hasOwnProperty('sliderOptions') && angular.isObject(customOptions = $scope.$eval(attr.sliderOptions))) {
+                  angular.extend(options, customOptions);
+              }
               return $timeout((function() {
                 return flexsliderDiv.flexslider(options);
               }), 0);
